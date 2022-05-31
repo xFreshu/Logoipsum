@@ -1,11 +1,16 @@
 import React from 'react'
 import { Wrapper } from './App.styles'
+import AuthCard from '../../components/organisms/AuthCard/AuthCard'
+import { ThemeProvider } from 'styled-components'
+import { theme } from '../../assets/theme'
 
 const App: React.FC = () => {
   return (
-    <>
-      <Wrapper>Hello World</Wrapper>
-    </>
+    <ThemeProvider theme={theme}>
+      <Wrapper>
+        <AuthCard />
+      </Wrapper>
+    </ThemeProvider>
   )
 }
 
