@@ -9,6 +9,36 @@ const StyledForm = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+    span {
+      font-size: 1.3rem;
+      margin: 20px;
+      font-weight: 700;
+      :before {
+        position: absolute;
+        top: 50%;
+        left: -20px;
+        transform: translateY(-50%);
+        content: '';
+        display: inline-block;
+        width: 22vw;
+        max-width: 200px;
+        height: 2px;
+        background-color: ${({ theme }) => theme.secondary};
+      }
+      :after {
+        position: absolute;
+        top: 50%;
+        right: -20px;
+        transform: translateY(-50%);
+        content: '';
+        display: inline-block;
+        width: 22vw;
+        max-width: 200px;
+        height: 2px;
+        background-color: ${({ theme }) => theme.secondary};
+      }
+    }
   }
 `
 const StyledLabel = styled.label`
@@ -42,6 +72,7 @@ const AuthLogin: React.FC = () => {
       <StyledInput type='password' id='login' />
       <div>
         <Button buttonName='Login' buttonType='AuthButton' />
+        <span>Jeśli nie masz konta to...</span>
         <Button buttonName='Login' />
       </div>
     </StyledForm>
