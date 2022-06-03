@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 interface ButtonProps {
-  buttonName: string
   buttonType?: string
 }
 
@@ -22,20 +22,33 @@ const StyledButton = styled.button`
     background-color: ${({ theme }) => theme.primary};
     color: ${({ theme }) => theme.secondary};
     border: solid 2px ${({ theme }) => theme.secondary};
+    cursor: pointer;
+  }
+  :first-child {
+    margin-top: 3rem;
   }
 `
+const StyledLink = styled(StyledButton)`
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
 
-const Button = ({ buttonName, buttonType }: ButtonProps) => {
+const Button = ({ buttonType }: ButtonProps) => {
   if (buttonType === 'AuthButton') {
-    return <StyledButton>{buttonName}</StyledButton>
+    return <StyledButton>Zaloguj</StyledButton>
   } else {
-    return <StyledButton>Whot</StyledButton>
+    return (
+      <StyledLink as={Link} to='/register'>
+        Zarejestruj
+      </StyledLink>
+    )
   }
 }
 
 Button.propTypes = {
-  buttonName: PropTypes.string.isRequired,
-  buttonType: PropTypes.string.isRequired,
+  buttonType: PropTypes.string,
 }
 
 export default Button

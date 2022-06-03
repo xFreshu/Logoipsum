@@ -4,7 +4,7 @@ import { Routes } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 type AppProps = {
-  children: JSX.Element | JSX.Element[]
+  children: JSX.Element[] | JSX.Element
 }
 
 const AppWrapper = ({ children }: AppProps) => {
