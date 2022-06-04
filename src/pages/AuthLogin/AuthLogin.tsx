@@ -2,7 +2,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import AuthCard from '../../components/organisms/Auth/AuthCard'
 import ErrorMessage from '../../components/atoms/ErrorMessage/ErrorMessage'
-import { StyledForm, StyledLabel, StyledInput, StyledButton } from '../../components/organisms/Auth/AuthFormInputs.styles'
+import { StyledForm, StyledLabel, StyledInput, StyledButtonAuth } from '../../components/organisms/Auth/AuthFormInputs.styles'
 import { Link } from 'react-router-dom'
 
 const AuthLogin: React.FC = () => {
@@ -24,11 +24,11 @@ const AuthLogin: React.FC = () => {
         <StyledInput type='password' id='password' {...register('password', { required: true })} />
         {errors.password && <ErrorMessage errorMsg='This field is required' />}
         <div>
-          <StyledButton type='submit'>Ad</StyledButton>
+          <StyledButtonAuth type='submit'>Zaloguj</StyledButtonAuth>
           <span>Jeśli nie masz konta to...</span>
-          <StyledButton to='/register' as={Link}>
-            olo
-          </StyledButton>
+          <StyledButtonAuth to='/register' as={Link}>
+            Rejestracja
+          </StyledButtonAuth>
         </div>
       </StyledForm>
     </AuthCard>

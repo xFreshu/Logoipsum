@@ -65,7 +65,7 @@ export const StyledInput = styled.input`
   }
 `
 
-export const StyledButton = styled.button`
+export const StyledButtonAuth = styled.button`
   width: 120px;
   height: 45px;
   background-color: ${({ theme }) => theme.secondary};
