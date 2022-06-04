@@ -2,8 +2,13 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import AuthCard from '../../components/organisms/Auth/AuthCard'
 import ErrorMessage from '../../components/atoms/ErrorMessage/ErrorMessage'
-import { StyledForm, StyledLabel, StyledInput, StyledButtonAuth } from '../../components/organisms/Auth/AuthFormInputs.styles'
-import { Link } from 'react-router-dom'
+import {
+  StyledForm,
+  StyledLabel,
+  StyledInput,
+  StyledButtonAuth,
+} from '../../components/organisms/Auth/AuthFormInputs.styles'
+import { Link, useNavigate } from 'react-router-dom'
 
 const AuthLogin: React.FC = () => {
   const {
@@ -11,8 +16,11 @@ const AuthLogin: React.FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm()
-
-  const onSubmit = (data: any) => console.log(data)
+  const navigate = useNavigate()
+  const onSubmit = (data: any) => {
+    console.log(data)
+    navigate('/')
+  }
 
   return (
     <AuthCard headerName='Zaloguj'>

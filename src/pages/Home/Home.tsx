@@ -1,7 +1,12 @@
 import React from 'react'
+import AppTemplate from '../../components/template/AppTemplate/AppTemplate'
 
 const Home = () => {
-  return <div>Yo</div>
+  return (
+    <AppTemplate>
+      <div>123</div>
+    </AppTemplate>
+  )
 }
 
 export default Home
