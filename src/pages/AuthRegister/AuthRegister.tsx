@@ -1,9 +1,8 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import { StyledForm, StyledLabel, StyledInput } from '../AuthFormInputs.styles'
-import AuthCard from '../AuthCard/AuthCard'
-import ErrorFormMessage from '../../../atoms/ErrorMessage/ErrorMessage'
-import Button from '../../../atoms/Button/Button'
+import { StyledForm, StyledLabel, StyledInput } from '../../components/organisms/Auth/AuthFormInputs.styles'
+import AuthCard from '../../components/organisms/Auth/AuthCard'
+import ErrorFormMessage from '../../components/atoms/ErrorMessage/ErrorMessage'
 
 const AuthRegister = () => {
   const {
@@ -24,13 +23,13 @@ const AuthRegister = () => {
         <StyledInput type='password' id='password' {...register('password', { required: true })} />
         {errors.password && <ErrorFormMessage errorMsg='This field is required' />}
         <StyledLabel htmlFor='repeatPassword'>Powtórz hasło</StyledLabel>
-        <StyledInput type='repeatPassword' id='repeatPassword' {...register('repeatPassword', { required: true })} />
+        <StyledInput
+          type='repeatPassword'
+          id='repeatPassword'
+          {...register('repeatPassword', { required: true })}
+        />
         {errors.repeatPassword && <ErrorFormMessage errorMsg='This field is required' />}
-        <div>
-          <Button />
-          <span>Jeśli masz konto to...</span>
-          <Button buttonType='AuthButton' />
-        </div>
+        <div>1</div>
       </StyledForm>
     </AuthCard>
   )

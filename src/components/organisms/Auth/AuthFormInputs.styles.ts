@@ -64,3 +64,29 @@ export const StyledInput = styled.input`
     color: ${({ theme }) => theme.primary};
   }
 `
+
+export const StyledButton = styled.button`
+  width: 120px;
+  height: 45px;
+  background-color: ${({ theme }) => theme.secondary};
+  color: ${({ theme }) => theme.primary};
+  font-size: 1.4rem;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  transition: 0.3s;
+  transition-timing-function: cubic-bezier(0.17, 0.67, 0.88, 0.61);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  :hover {
+    background-color: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.secondary};
+    border: solid 2px ${({ theme }) => theme.secondary};
+    cursor: pointer;
+  }
+  :first-child {
+    margin-top: 3rem;
+  }
+`

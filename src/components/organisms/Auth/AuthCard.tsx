@@ -1,6 +1,6 @@
 import React from 'react'
-import { Card } from '../../../atoms/Card/Card.styles'
-import Logo from '../../../../assets/Logo.svg'
+import { Card } from '../../atoms/Card/Card.styles'
+import Logo from '../../../assets/Logo.svg'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
