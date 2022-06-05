@@ -27,10 +27,10 @@ const AuthLogin: React.FC = () => {
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <StyledLabel htmlFor='login'>Login</StyledLabel>
         <StyledInput type='text' id='login' {...register('login', { required: true })} />
-        {errors.login && <ErrorMessage errorMsg='This field is required' />}
+        {errors.login && <ErrorMessage errorMsg='Te pole jest wymagane' />}
         <StyledLabel htmlFor='password'>Password</StyledLabel>
         <StyledInput type='password' id='password' {...register('password', { required: true })} />
-        {errors.password && <ErrorMessage errorMsg='This field is required' />}
+        {errors.password && <ErrorMessage errorMsg='Te pole jest wymagane' />}
         <div>
           <StyledButtonAuth type='submit'>Zaloguj</StyledButtonAuth>
           <span>Jeśli nie masz konta to...</span>
