@@ -20,7 +20,8 @@ const AuthRegister = () => {
 
   const onSubmit = (data: any) => {
     console.log(data)
-   navigate('/login')
+    localStorage.setItem('user', JSON.stringify(data))
+    navigate('/login')
   }
   return (
     <>
@@ -37,11 +38,7 @@ const AuthRegister = () => {
           />
           {errors.password && <ErrorFormMessage errorMsg='Te pole jest wymagane' />}
           <StyledLabel htmlFor='email'>E-mail</StyledLabel>
-          <StyledInput
-            type='email'
-            id='email'
-            {...register('email', { required: true })}
-          />
+          <StyledInput type='email' id='email' {...register('email', { required: true })} />
           {errors.email && <ErrorFormMessage errorMsg='Te pole jest wymagane' />}
           <div>
             <StyledButtonAuth>Zarejestruj</StyledButtonAuth>
