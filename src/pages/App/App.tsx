@@ -7,7 +7,7 @@ import AuthRegister from '../AuthRegister/AuthRegister'
 import AuthLogin from '../AuthLogin/AuthLogin'
 import Home from '../Home/Home'
 
-const App: React.FC = () => {
+const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <AppWrapper>

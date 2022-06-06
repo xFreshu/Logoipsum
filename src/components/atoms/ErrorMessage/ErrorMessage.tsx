@@ -6,7 +6,11 @@ type errorMsgProps = {
 }
 
 const ErrorMessage = ({ errorMsg }: errorMsgProps) => {
-  return <ErrorFormMessage>{errorMsg}</ErrorFormMessage>
+  if (errorMsg.length !== 0) {
+    return <ErrorFormMessage>{errorMsg}</ErrorFormMessage>
+  } else {
+    return <ErrorFormMessage>Błąd</ErrorFormMessage>
+  }
 }
 
 ErrorMessage.propTypes = {

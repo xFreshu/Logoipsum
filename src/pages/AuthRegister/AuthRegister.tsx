@@ -36,13 +36,13 @@ const AuthRegister = () => {
             {...register('password', { required: true })}
           />
           {errors.password && <ErrorFormMessage errorMsg='Te pole jest wymagane' />}
-          <StyledLabel htmlFor='repeatPassword'>Powtórz hasło</StyledLabel>
+          <StyledLabel htmlFor='email'>E-mail</StyledLabel>
           <StyledInput
-            type='password'
-            id='repeatPassword'
-            {...register('repeatPassword', { required: true })}
+            type='email'
+            id='email'
+            {...register('email', { required: true })}
           />
-          {errors.repeatPassword && <ErrorFormMessage errorMsg='Te pole jest wymagane' />}
+          {errors.email && <ErrorFormMessage errorMsg='Te pole jest wymagane' />}
           <div>
             <StyledButtonAuth>Zarejestruj</StyledButtonAuth>
             <span>Jeśli masz konto to...</span>
