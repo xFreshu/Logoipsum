@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useForm } from 'react-hook-form'
 import {
   StyledForm,
@@ -6,44 +6,12 @@ import {
   StyledInput,
   StyledButtonAuth,
 } from '../../components/organisms/Auth/AuthFormInputs.styles'
-import styled, { keyframes } from 'styled-components'
 import AuthCard from '../../components/organisms/Auth/AuthCard'
 import ErrorFormMessage from '../../components/atoms/ErrorMessage/ErrorMessage'
-import { Link } from 'react-router-dom'
-
-const OpeningAnimation = keyframes`
-  0% {top: -5%}
-  30% {top: 5%}
-  70% {top: 5%}
-  100% {top: -20%}
-`
-
-interface PopoutProps {
-  pass?: boolean
-}
-
-const AlertPopout = styled.div<PopoutProps>`
-  background-color: ${({ pass }) => (pass ? 'rgb(250, 156, 160)' : '#a9ce72')};
-  border: ${({ pass }) =>
-    pass ? 'solid 3px ${({ theme }) => theme.error}' : 'solid 3px ${({ theme }) => theme.pass}'};
-  position: fixed;
-  top: -20%;
-  animation-name: ${OpeningAnimation};
-  animation-duration: 6s;
-  width: 400px;
-  z-index: 100;
-  padding: 20px 0;
-  text-align: center;
-  border-radius: 10px;
-  color: ${({ pass }) =>
-    pass ? '${({ theme }) => theme.error}' : '${({ theme }) => theme.warning}'};
-  font-weight: 700;
-  font-size: 1.4rem;
-`
+import { Link, useNavigate } from 'react-router-dom'
 
 const AuthRegister = () => {
-  const [isRegistered, setIsRegistered] = useState(false)
-  const [errorCode, setErrorCode] = useState('')
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -52,19 +20,10 @@ const AuthRegister = () => {
 
   const onSubmit = (data: any) => {
     console.log(data)
-    if (data.password === data.repeatPassword) {
-      setIsRegistered(true)
-      setErrorCode('Poprawnie założone konto')
-      setTimeout(() => setIsRegistered(false), 6000)
-    } else {
-      setIsRegistered(true)
-      setErrorCode('Błędnie powtórzone hasło')
-      console.log('not')
-    }
+   navigate('/login')
   }
   return (
     <>
-      {isRegistered ? <AlertPopout>{errorCode}</AlertPopout> : null}
       <AuthCard headerName='Rejestracja'>
         <StyledForm onSubmit={handleSubmit(onSubmit)}>
           <StyledLabel htmlFor='login'>Login</StyledLabel>
