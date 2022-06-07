@@ -60,7 +60,7 @@ const MobileNavigation = () => {
           </StyledNavLink>
         </li>
         <li>
-          <StyledNavLink path='/login'>
+          <StyledNavLink path='/'>
             <IoLogOut />
           </StyledNavLink>
         </li>

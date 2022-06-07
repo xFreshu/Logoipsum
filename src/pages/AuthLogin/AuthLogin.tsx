@@ -26,7 +26,7 @@ const AuthLogin: React.FC = () => {
     console.log(data)
     console.log(getUser)
     if (data.login === getUser.login && data.password === getUser.password) {
-      navigate('/')
+      navigate('/home')
     } else {
       setErrorState(true)
     }

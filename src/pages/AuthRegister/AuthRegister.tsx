@@ -21,7 +21,7 @@ const AuthRegister = () => {
   const onSubmit = (data: any) => {
     console.log(data)
     localStorage.setItem('user', JSON.stringify(data))
-    navigate('/login')
+    navigate('/')
   }
   return (
     <>

@@ -11,7 +11,7 @@ const AppTemplate = ({ children }: AppProps) => {
     <>
       <nav>Desktop</nav>
       {children}
-      {/* <MobileNavigation /> */}
+      <MobileNavigation />
     </>
   )
 }
