@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import AuthCard from '../../components/organisms/Auth/AuthCard'
 import ErrorMessage from '../../components/atoms/ErrorMessage/ErrorMessage'
