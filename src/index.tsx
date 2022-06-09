@@ -1,14 +1,16 @@
 import React from 'react'
-import ReactDOM, { createRoot } from 'react-dom/client'
+import ReactDOM from 'react-dom/client'
 import { GlobalStyles } from './assets/GlobalStyles'
 import App from './pages/App/App'
 import reportWebVitals from './reportWebVitals'
 import { BrowserRouter } from 'react-router-dom'
+import ScrollToTop from './helpers/ScroolToTop'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
     <BrowserRouter>
+      <ScrollToTop />
       <GlobalStyles />
       <App />
     </BrowserRouter>

@@ -1,30 +1,8 @@
 import React from 'react'
 import AppTemplate from '../../components/template/AppTemplate/AppTemplate'
 import styled from 'styled-components'
-import { Card } from '../../components/atoms/Card/Card.styles'
-
-const AppCard = styled(Card)`
-  background-color: #fff;
-  padding: 0;
-`
-
-const WelcomeSection = styled.div`
-  padding: 20px;
-  h1 {
-    margin-bottom: 10px;
-    font-size: 2rem;
-  }
-  h2 {
-    font-weight: 400;
-    text-align: justify;
-    font-size: 1.6rem;
-  }
-  h3 {
-    margin-top: 10px;
-    font-weight: 400;
-    font-size: 1.3rem;
-  }
-`
+import { Link } from 'react-router-dom'
+import { AppCard, WelcomeSection } from './Home.styles'
 
 const DUMMY_CATEGORIES = [
   { id: 1, name: 'Bryły przestrzenne', questions: 2 },
@@ -43,17 +21,19 @@ const DUMMY_CATEGORIES = [
   { id: 14, name: 'Wyrażenia algebraiczne', questions: 1 },
 ]
 
-const CardCategories = styled.div`
+const CardCategories = styled(Link)`
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #f6fff8;
-  height: 150px;
-  width: 150px;
+  height: 120px;
+  width: 120px;
   margin: 10px;
   justify-content: center;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
+  text-decoration: none;
+  color: #000;
   :hover {
     cursor: pointer;
   }
@@ -96,7 +76,7 @@ const Home = () => {
         </WelcomeSection>
         <CategoriesContainer>
           {DUMMY_CATEGORIES.map((item) => (
-            <CardCategories key={item.id}>
+            <CardCategories key={item.id} to={item.name}>
               <span>{item.name.substring(0, 2)}</span>
               <span>{item.name}</span>
               <span>Liczba pytań: {item.questions}</span>
