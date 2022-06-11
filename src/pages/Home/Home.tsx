@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import AppTemplate from '../../components/template/AppTemplate/AppTemplate'
 import { AppCard, WelcomeSection } from './Home.styles'
 import CategoriesContainer from '../../components/organisms/CategoriesContainer/CategoriesContainer'
+import { UserContext } from '../../context/UserProvider'
 
 const DUMMY_CATEGORIES = [
   { id: 1, name: 'Bryły przestrzenne', questions: '2' },
@@ -21,11 +22,12 @@ const DUMMY_CATEGORIES = [
 ]
 
 const Home = () => {
+  const { authUser } = useContext(UserContext)
   return (
     <AppTemplate>
       <AppCard>
         <WelcomeSection>
-          <h1>Hi [Your name] 👋</h1>
+          <h1>Hi, {authUser.login || 'unauthorized'} 👋</h1>
           <h2>Witaj w aplikacji, w której możesz tworzyć pytania, albo pomagać innym!</h2>
           <h3>Poniżej, temaaty idk.</h3>
         </WelcomeSection>

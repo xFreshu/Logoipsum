@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import AuthCard from '../../components/organisms/Auth/AuthCard'
 import ErrorMessage from '../../components/atoms/ErrorMessage/ErrorMessage'
@@ -10,9 +10,11 @@ import {
 } from '../../components/organisms/Auth/AuthFormInputs.styles'
 import { Link, useNavigate } from 'react-router-dom'
 import styled, { keyframes } from 'styled-components'
+import { UserContext } from '../../context/UserProvider'
 
 const AuthLogin: React.FC = () => {
   const [errorState, setErrorState] = useState(false)
+  const { handleAuthUser } = useContext(UserContext)
   // @ts-ignore
   const userData = JSON.parse(localStorage.getItem('user'))
   const getUser = userData || {}
@@ -25,6 +27,7 @@ const AuthLogin: React.FC = () => {
   const onSubmit = (data: any) => {
     console.log(data)
     console.log(getUser)
+    handleAuthUser(data)
     if (data.login === getUser.login && data.password === getUser.password) {
       navigate('/home')
     } else {

@@ -9,21 +9,24 @@ import Home from '../Home/Home'
 import Profile from '../Profile/Profile'
 import AddQuestion from '../Add-Question/Add-Question'
 import Settings from '../Settings/Settings'
+import UserProvider from '../../context/UserProvider'
 
 const App = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <AppWrapper>
-        <>
-          <Route path='/' element={<AuthLogin />} />
-          <Route path='/register' element={<AuthRegister />} />
-          <Route path='/profile' element={<Profile />} />
-          <Route path='/add' element={<AddQuestion />} />
-          <Route path='/settings' element={<Settings />} />
-          <Route path='/home' element={<Home />} />
-        </>
-      </AppWrapper>
-    </ThemeProvider>
+    <UserProvider>
+      <ThemeProvider theme={theme}>
+        <AppWrapper>
+          <>
+            <Route path='/' element={<AuthLogin />} />
+            <Route path='/register' element={<AuthRegister />} />
+            <Route path='/profile' element={<Profile />} />
+            <Route path='/add' element={<AddQuestion />} />
+            <Route path='/settings' element={<Settings />} />
+            <Route path='/home' element={<Home />} />
+          </>
+        </AppWrapper>
+      </ThemeProvider>
+    </UserProvider>
   )
 }
 
