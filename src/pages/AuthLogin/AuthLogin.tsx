@@ -14,7 +14,7 @@ import { UserContext } from '../../context/UserProvider'
 
 const AuthLogin: React.FC = () => {
   const [errorState, setErrorState] = useState(false)
-  const { handleAuthUser } = useContext(UserContext)
+  const { setAuthUser } = useContext(UserContext)
   // @ts-ignore
   const userData = JSON.parse(localStorage.getItem('user'))
   const getUser = userData || {}
@@ -27,7 +27,7 @@ const AuthLogin: React.FC = () => {
   const onSubmit = (data: any) => {
     console.log(data)
     console.log(getUser)
-    handleAuthUser(data)
+    setAuthUser(data)
     if (data.login === getUser.login && data.password === getUser.password) {
       navigate('/home')
     } else {

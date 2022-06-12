@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyledCategoriesContainer } from './CategoriesContainer.styled'
+import { StyledCategoriesContainer } from './CategoriesContainer.styles'
 import CardCategories from '../../molecules/CardCategories/CardCategories'
 import PropTypes from 'prop-types'
 

@@ -1,44 +1,27 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { AiFillHome } from 'react-icons/ai'
 import { FaUser } from 'react-icons/fa'
 import { MdAddCircle } from 'react-icons/md'
 import { IoSettingsSharp, IoLogOut } from 'react-icons/io5'
-import styled from 'styled-components'
+import { MobileNavigationStyles } from './MobileNavigation.styles'
 import StyledNavLink from '../../atoms/StyledNavLink/StyledNavLink'
-
-const MobileNavigationStyled = styled.nav`
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 5%;
-  width: 80%;
-  max-width: 400px;
-  background-color: #fff;
-  ul {
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-    display: flex;
-    justify-content: space-between;
-    list-style: none;
-    font-size: 3rem;
-    padding: 5px;
-    border-radius: 10px;
-    li {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 48px;
-      height: 48px;
-      text-decoration: none;
-    }
-  }
-  @media (min-width: 880px) {
-    display: none;
-  }
-`
+import { UserContext } from '../../../context/UserProvider'
+import { useNavigate } from 'react-router-dom'
 
 const MobileNavigation = () => {
+  // @ts-ignore
+  const { authUser, setAuthUser } = useContext(UserContext)
+
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    console.log('LOGOUT')
+    setAuthUser({})
+    console.log(authUser)
+    navigate('/')
+  }
   return (
-    <MobileNavigationStyled>
+    <MobileNavigationStyles>
       <ul>
         <li>
           <StyledNavLink path='/home'>
@@ -61,12 +44,12 @@ const MobileNavigation = () => {
           </StyledNavLink>
         </li>
         <li>
-          <StyledNavLink path='/'>
+          <div onClick={handleLogout} style={{ color: '#243A5A', cursor: 'pointer' }}>
             <IoLogOut />
-          </StyledNavLink>
+          </div>
         </li>
       </ul>
-    </MobileNavigationStyled>
+    </MobileNavigationStyles>
   )
 }
 
