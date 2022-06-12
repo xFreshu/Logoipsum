@@ -9,8 +9,8 @@ import {
   StyledButtonAuth,
 } from '../../components/organisms/Auth/AuthFormInputs.styles'
 import { Link, useNavigate } from 'react-router-dom'
-import styled, { keyframes } from 'styled-components'
 import { UserContext } from '../../context/UserProvider'
+import ErrorPopout from '../../components/atoms/ErrorPopout/ErrorPopout'
 
 const AuthLogin: React.FC = () => {
   const [errorState, setErrorState] = useState(false)
@@ -35,30 +35,9 @@ const AuthLogin: React.FC = () => {
     }
   }
 
-  const OpenPopout = keyframes`
-    0%  {top: -20%} 
-    50% {top: 5%}
-    100% {top: -20%}
-  `
-
-  const ErrorPopout = styled.div`
-    top: -20%;
-    position: fixed;
-    border: solid 3px ${({ theme }) => theme.error};
-    font-size: 1.6rem;
-    padding: 2rem 6rem;
-    border-radius: 10px;
-    background-color: #ffa9ab;
-    font-weight: 700;
-    color: ${({ theme }) => theme.error};
-    animation-name: ${OpenPopout};
-    animation-duration: 3s;
-    z-index: 1000;
-  `
-
   return (
     <>
-      {errorState ? <ErrorPopout>Nie znaleziono użytkownika</ErrorPopout> : null}
+      {errorState ? <ErrorPopout error='Nie znaleziono użytkownika' /> : null}
       <AuthCard headerName='Zaloguj'>
         <StyledForm onSubmit={handleSubmit(onSubmit)}>
           <StyledLabel htmlFor='login'>Login</StyledLabel>
