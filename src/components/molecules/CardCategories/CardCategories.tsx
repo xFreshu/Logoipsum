@@ -10,7 +10,7 @@ type CardCategoriesProps = {
 
 const CardCategories = ({ id, name, questions }: CardCategoriesProps) => {
   return (
-    <StyledCardCategories key={id} to={name}>
+    <StyledCardCategories key={id} to={`/topics/${id}`}>
       <span>{name.substring(0, 3)}</span>
       <span>{name}</span>
       <span>Liczba pytań: {questions}</span>
