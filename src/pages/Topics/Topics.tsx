@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { AppCard } from '../Home/Home.styles'
 import { useParams } from 'react-router-dom'
 import AppTemplate from '../../components/template/AppTemplate/AppTemplate'
-import styled from 'styled-components'
 import Question from '../../components/molecules/Question/Question'
+import { Header, BackToTopics } from './Topics.styles'
 
 const DUMMY_QUESTIONS = [
   {
@@ -57,11 +57,6 @@ const DUMMY_QUESTIONS = [
   },
 ]
 
-const Header = styled.h1`
-  text-align: center;
-  margin: 2rem 0;
-`
-
 const Topics = ({ DUMMY_CATEGORIES }: any) => {
   const { id } = useParams()
   const getTopic = DUMMY_CATEGORIES.find((item: { id: number }) => item.id === Number(id))
@@ -70,6 +65,7 @@ const Topics = ({ DUMMY_CATEGORIES }: any) => {
       <AppTemplate>
         <AppCard>
           <Header>{getTopic.name}</Header>
+          <BackToTopics to='/home'>Cofnij</BackToTopics>
           {DUMMY_QUESTIONS.map(({ title, description, id, upvote, downvote, user, answers }) => (
             <Question
               key={id}
