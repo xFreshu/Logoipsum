@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/logoipsum.iml" filepath="$PROJECT_DIR$/.idea/logoipsum.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../logoipsum-backend/.idea/logoipsum-backend.iml" filepath="$PROJECT_DIR$/../logoipsum-backend/.idea/logoipsum-backend.iml" />
     </modules>
   </component>
 </project>

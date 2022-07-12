@@ -9,6 +9,7 @@ import {
 import AuthCard from '../../components/organisms/Auth/AuthCard'
 import ErrorFormMessage from '../../components/atoms/ErrorMessage/ErrorMessage'
 import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const AuthRegister = () => {
   const navigate = useNavigate()
@@ -20,8 +21,14 @@ const AuthRegister = () => {
 
   const onSubmit = (data: any) => {
     console.log(data)
-    localStorage.setItem('user', JSON.stringify(data))
-    navigate('/')
+    try {
+      axios.post('http://localhost:5000/api/users/signup', data).then((res) => {
+        console.log(res)
+        navigate('/')
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
   return (
     <>

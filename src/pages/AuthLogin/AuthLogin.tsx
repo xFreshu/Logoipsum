@@ -11,13 +11,11 @@ import {
 import { Link, useNavigate } from 'react-router-dom'
 import { UserContext } from '../../context/UserProvider'
 import ErrorPopout from '../../components/atoms/ErrorPopout/ErrorPopout'
+import axios from 'axios'
 
 const AuthLogin: React.FC = () => {
   const [errorState, setErrorState] = useState(false)
   const { setAuthUser } = useContext(UserContext)
-  // @ts-ignore
-  const userData = JSON.parse(localStorage.getItem('user'))
-  const getUser = userData || {}
   const {
     register,
     handleSubmit,
@@ -26,12 +24,20 @@ const AuthLogin: React.FC = () => {
   const navigate = useNavigate()
   const onSubmit = (data: any) => {
     console.log(data)
-    console.log(getUser)
     setAuthUser(data)
-    if (data.login === getUser.login && data.password === getUser.password) {
-      navigate('/home')
-    } else {
-      setErrorState(true)
+    try {
+      axios
+        .post('http://localhost:5000/api/users/login', data)
+        .then((res) => {
+          console.log(res)
+          navigate('/home')
+        })
+        .catch((err) => {
+          console.log(err)
+          setErrorState(true)
+        })
+    } catch (error) {
+      console.log(error)
     }
   }
 
