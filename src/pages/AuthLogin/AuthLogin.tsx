@@ -15,6 +15,7 @@ import axios from 'axios'
 
 const AuthLogin: React.FC = () => {
   const [errorState, setErrorState] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
   const { setAuthUser } = useContext(UserContext)
   const {
     register,
@@ -33,7 +34,8 @@ const AuthLogin: React.FC = () => {
           navigate('/home')
         })
         .catch((err) => {
-          console.log(err)
+          // console.log(err)
+          setErrorMessage(err.message)
           setErrorState(true)
         })
     } catch (error) {
@@ -43,7 +45,7 @@ const AuthLogin: React.FC = () => {
 
   return (
     <>
-      {errorState ? <ErrorPopout error='Nie znaleziono użytkownika' /> : null}
+      {errorState ? <ErrorPopout error={errorMessage} /> : null}
       <AuthCard headerName='Zaloguj'>
         <StyledForm onSubmit={handleSubmit(onSubmit)}>
           <StyledLabel htmlFor='login'>Login</StyledLabel>
