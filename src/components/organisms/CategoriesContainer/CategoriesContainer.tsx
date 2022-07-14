@@ -10,14 +10,14 @@ type ContainerProps = {
 type CardCategoriesProps = {
   id: number
   name: string
-  questions: string | undefined
+  topics: Array<any>
 }
 
 const CategoriesContainer = ({ categories }: ContainerProps) => {
   return (
     <StyledCategoriesContainer>
-      {categories.map(({ id, name, questions }: CardCategoriesProps) => (
-        <CardCategories id={id} name={name} questions={questions} key={id} />
+      {categories.map(({ id, name, topics }: CardCategoriesProps) => (
+        <CardCategories id={id} name={name} topics={topics} key={id} />
       ))}
     </StyledCategoriesContainer>
   )

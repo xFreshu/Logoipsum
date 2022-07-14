@@ -1,20 +1,31 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import AppTemplate from '../../components/template/AppTemplate/AppTemplate'
 import { AppCard, WelcomeSection } from './Home.styles'
 import CategoriesContainer from '../../components/organisms/CategoriesContainer/CategoriesContainer'
 import { UserContext } from '../../context/UserProvider'
+import axios from 'axios'
 
-type HomeProps = {
-  DUMMY_CATEGORIES: Array<{
-    id: number
-    name: string
-    questions: string
-  }>
-}
-
-const Home = ({ DUMMY_CATEGORIES }: HomeProps) => {
+const Home = () => {
+  const [getTopics, setTopics] = useState([])
   const { authUser } = useContext(UserContext)
+
+  useEffect(() => {
+    try {
+      axios
+        .get('http://localhost:5000/api/topics')
+        .then((res) => {
+          setTopics(res.data.topics)
+          console.log(res.data.topics)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    } catch (err) {
+      console.log(err)
+    }
+  }, [])
+
   return (
     <AppTemplate>
       <AppCard>
@@ -23,7 +34,7 @@ const Home = ({ DUMMY_CATEGORIES }: HomeProps) => {
           <h2>Witaj w aplikacji, w której możesz tworzyć pytania, albo pomagać innym!</h2>
           <h3>Poniżej, temaaty idk.</h3>
         </WelcomeSection>
-        <CategoriesContainer categories={DUMMY_CATEGORIES} />
+        <CategoriesContainer categories={getTopics} />
       </AppCard>
     </AppTemplate>
   )

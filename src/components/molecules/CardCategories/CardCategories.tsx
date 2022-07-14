@@ -5,15 +5,15 @@ import PropTypes from 'prop-types'
 type CardCategoriesProps = {
   id: number
   name: string
-  questions: string | undefined
+  topics: Array<any>
 }
 
-const CardCategories = ({ id, name, questions }: CardCategoriesProps) => {
+const CardCategories = ({ id, name, topics }: CardCategoriesProps) => {
   return (
     <StyledCardCategories key={id} to={`/topics/${id}`}>
       <span>{name.substring(0, 3)}</span>
       <span>{name}</span>
-      <span>Liczba pytań: {questions}</span>
+      <span>Liczba pytań: {topics.length}</span>
     </StyledCardCategories>
   )
 }
@@ -21,7 +21,7 @@ const CardCategories = ({ id, name, questions }: CardCategoriesProps) => {
 CardCategories.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  questions: PropTypes.string.isRequired,
+  topics: PropTypes.string.isRequired,
 }
 
 export default CardCategories
