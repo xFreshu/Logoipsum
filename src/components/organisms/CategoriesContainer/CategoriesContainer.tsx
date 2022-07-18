@@ -8,16 +8,17 @@ type ContainerProps = {
 }
 
 type CardCategoriesProps = {
-  id: number
+  id: string
   name: string
-  topics: Array<any>
+  usersQuestions: Array<any>
+  level: string
 }
 
 const CategoriesContainer = ({ categories }: ContainerProps) => {
   return (
     <StyledCategoriesContainer>
-      {categories.map(({ id, name, topics }: CardCategoriesProps) => (
-        <CardCategories id={id} name={name} topics={topics} key={id} />
+      {categories.map(({ id, name, level, usersQuestions }: CardCategoriesProps) => (
+        <CardCategories id={id} name={name} level={level} usersQuestions={usersQuestions} key={id} />
       ))}
     </StyledCategoriesContainer>
   )

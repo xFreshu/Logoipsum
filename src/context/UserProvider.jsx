@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 export const UserContext = React.createContext({
-  authUser: { login: '', password: '', email: '' },
+  authUser: { login: '', password: '' },
   setAuthUser: data => {},
 })
 

@@ -16,7 +16,7 @@ import axios from 'axios'
 const AuthLogin: React.FC = () => {
   const [errorState, setErrorState] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
-  const { setAuthUser } = useContext(UserContext)
+  const { authUser, setAuthUser } = useContext(UserContext)
   const {
     register,
     handleSubmit,
@@ -25,12 +25,13 @@ const AuthLogin: React.FC = () => {
   const navigate = useNavigate()
   const onSubmit = (data: any) => {
     console.log(data)
-    setAuthUser(data)
+    console.log('auth user', authUser)
     try {
       axios
         .post('http://localhost:5000/api/users/login', data)
         .then((res) => {
           console.log(res)
+          setAuthUser(res.data.user)
           navigate('/home')
         })
         .catch((err) => {

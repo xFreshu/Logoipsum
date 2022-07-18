@@ -1,91 +1,37 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { useState, useEffect } from 'react'
 import { AppCard } from '../Home/Home.styles'
 import { useParams } from 'react-router-dom'
 import AppTemplate from '../../components/template/AppTemplate/AppTemplate'
-import Question from '../../components/molecules/Question/Question'
 import { Header, BackToTopics } from './Topics.styles'
+import axios from 'axios'
+import Question from '../../components/molecules/Question/Question'
 
-const DUMMY_QUESTIONS = [
-  {
-    id: 1,
-    title: 'Czy wyrażenie "x^2 + y^2 = z^2" jest prawdziwe?',
-    description: 'lorem ipsum dolor sit amet',
-    category: 'Bryły przestrzenne',
-    upvote: '30',
-    downvote: '2',
-    user: {
-      login: 'user1',
-      avatar: 'https://avatars3.githubusercontent.com/u/17098120?s=460&v=4',
-    },
-    answers: [
-      {
-        id: 1,
-        content: 'lorem ipsum dolor sit amet',
-        upvote: '33',
-        downvote: '11',
-        user: {
-          login: 'user2',
-          avatar: 'https://avatars3.githubusercontent.com/u/17098120?s=460&v=4',
-        },
-      },
-    ],
-  },
-  {
-    id: 2,
-    title: 'Czy trójkąt jest kwadratem?',
-    description: 'lorem ipsum dolor sit amet lorem ipsum dolor sit amet',
-    category: 'Bryły przestrzenne',
-    upvote: '10',
-    downvote: '223',
-    user: {
-      login: 'user2',
-      avatar: 'https://avatars3.githubusercontent.com/u/17098120?s=460&v=4',
-    },
-    answers: [
-      {
-        id: 2,
-        content: 'lorem ipsum dolor sit amet',
-        upvote: '1',
-        downvote: '2',
-        user: {
-          login: 'user4',
-          avatar: 'https://avatars3.githubusercontent.com/u/17098120?s=460&v=4',
-        },
-      },
-    ],
-  },
-]
-
-const Topics = ({ DUMMY_CATEGORIES }: any) => {
+const Topics = () => {
+  const [getTopic, setTopic] = useState({ id: '', name: '', topics: [] })
+  const [getQuestions, setQuestions] = useState([])
   const { id } = useParams()
-  const getTopic = DUMMY_CATEGORIES.find((item: { id: number }) => item.id === Number(id))
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/api/topics/${id}`)
+      .then((res) => {
+        console.log(res.data)
+        setTopic(res.data)
+        setQuestions(res.data.topics)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
   return (
     <>
       <AppTemplate>
         <AppCard>
-          <Header>{getTopic.name}</Header>
+          <Header>{`${getTopic.name}, liczba pytań ${getTopic.topics.length}` || 'Loading'}</Header>
           <BackToTopics to='/home'>Cofnij</BackToTopics>
-          {DUMMY_QUESTIONS.map(({ title, description, id, upvote, downvote, user, answers }) => (
-            <Question
-              key={id}
-              title={title}
-              description={description}
-              id={id}
-              upvote={upvote}
-              downvote={downvote}
-              user={user}
-              answers={answers}
-            />
-          ))}
         </AppCard>
       </AppTemplate>
     </>
   )
-}
-
-Topics.propTypes = {
-  DUMMY_CATEGORIES: PropTypes.array.isRequired,
 }
 
 export default Topics
