@@ -6,28 +6,47 @@ import { Header, BackToTopics } from './Topics.styles'
 import axios from 'axios'
 import Question from '../../components/molecules/Question/Question'
 
+// /topicId/:id
 const Topics = () => {
-  const [getTopic, setTopic] = useState({ id: '', name: '', topics: [] })
+  const [getTopic, setTopic] = useState({ id: '', name: '', level: '', usersQuestions: [] })
   const [getQuestions, setQuestions] = useState([])
   const { id } = useParams()
   useEffect(() => {
     axios
       .get(`http://localhost:5000/api/topics/${id}`)
       .then((res) => {
-        console.log(res.data)
         setTopic(res.data)
-        setQuestions(res.data.topics)
       })
       .catch((err) => {
         console.log(err)
       })
+    axios.get(`http://localhost:5000/api/topics/topicId/${id}`).then((res) => {
+      console.log(res.data.questions)
+      setQuestions(res.data.questions)
+    })
   }, [])
   return (
     <>
       <AppTemplate>
         <AppCard>
-          <Header>{`${getTopic.name}, liczba pytań ${getTopic.topics.length}` || 'Loading'}</Header>
+          <Header>
+            {`${getTopic.name}, liczba pytań ${getTopic.usersQuestions.length}` || 'Loading'}
+          </Header>
           <BackToTopics to='/home'>Cofnij</BackToTopics>
+          <>
+            {getQuestions.map(({ name, body, id, creator, answers }) => (
+              <Question
+                title={name}
+                description={body}
+                id={id}
+                // upvote={getQuestions.upvotes}
+                // downvote={getQuestions.downvotes}
+                user={creator}
+                answers={answers}
+                key={id}
+              />
+            ))}
+          </>
         </AppCard>
       </AppTemplate>
     </>
