@@ -29,21 +29,20 @@ const Topics = () => {
     <>
       <AppTemplate>
         <AppCard>
-          <Header>
-            {`${getTopic.name}, liczba pytań ${getTopic.usersQuestions.length}` || 'Loading'}
-          </Header>
+          <Header>{`${getTopic.name}, liczba pytań ${getQuestions.length}` || 'Loading'}</Header>
           <BackToTopics to='/home'>Cofnij</BackToTopics>
           <>
-            {getQuestions.map(({ name, body, id, creator, answers }) => (
+            {getQuestions.map(({ name, body, id, creator, answers, upvotes, downvotes }) => (
               <Question
                 title={name}
                 description={body}
                 id={id}
-                // upvote={getQuestions.upvotes}
-                // downvote={getQuestions.downvotes}
+                upvote={upvotes}
+                downvote={downvotes}
                 user={creator}
                 answers={answers}
                 key={id}
+                creator={creator}
               />
             ))}
           </>

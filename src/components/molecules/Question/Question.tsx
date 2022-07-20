@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyledQuestion, QuestionInformation, Votes } from './Question.styles'
+import axios from 'axios'
 import PropTypes from 'prop-types'
 
 // type QuestionProps = {
@@ -10,34 +11,41 @@ import PropTypes from 'prop-types'
 //   downvote?: number
 //   user: string
 //   answers: any
-  // answers: Array<{
-  //   id: number
-  //   content: string
-  //   upvote: number
-  //   downvote: number
-  //   user: {
-  //     login: string
-  //     avatar: string
-  //   }
-  // }>
+// answers: Array<{
+//   id: number
+//   content: string
+//   upvote: number
+//   downvote: number
+//   user: {
+//     login: string
+//     avatar: string
+//   }
+// }>
 // }
 
-const Question = ({ title, description, id }: any) => {
+const Question = ({ title, description, upvote, downvote, answers, creator }: any) => {
+  const [getUser, setUser] = useState({ login: '', image: '' })
+  useEffect(() => {
+    axios.get(`http://localhost:5000/api/users/${creator}`).then((res) => {
+      setUser(res.data.user)
+    })
+  }, [])
+
   return (
     <StyledQuestion>
       <QuestionInformation>
         <h2>{title}</h2>
         <h3>{description}</h3>
-        {/*<div>*/}
-        {/*  <img src={user.avatar} alt={user.login} />*/}
-        {/*  <span>{user.login}</span>*/}
-        {/*</div>*/}
+        <div>
+          <img src={getUser.image} alt={getUser.login} />
+          <span>{getUser.login}</span>
+        </div>
       </QuestionInformation>
-      {/*<Votes>*/}
-      {/*  <span>👍 {upvote}</span>*/}
-      {/*  <span>👎 {downvote}</span>*/}
-      {/*  <span>comments: {answers.length}</span>*/}
-      {/*</Votes>*/}
+      <Votes>
+        <span>👍 {upvote || 0}</span>
+        <span>👎 {downvote || 0}</span>
+        <span>Odpowiedzi: {answers.length}</span>
+      </Votes>
     </StyledQuestion>
   )
 }
