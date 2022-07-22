@@ -25,7 +25,7 @@ const Topics = () => {
       console.log(res.data.questions)
       setQuestions(res.data.questions)
     })
-  }, [])
+  }, [id])
   return (
     <>
       <AppTemplate>

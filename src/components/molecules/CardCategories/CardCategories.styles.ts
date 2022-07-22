@@ -7,7 +7,8 @@ export const StyledCardCategories = styled(Link)`
   align-items: center;
   background-color: #f6fff8;
   height: 120px;
-  width: 120px;
+  min-width: 120px;
+  width: auto;
   margin: 10px;
   justify-content: center;
   border-radius: 10px;
