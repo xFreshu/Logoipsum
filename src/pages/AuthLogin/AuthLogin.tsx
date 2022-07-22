@@ -24,8 +24,6 @@ const AuthLogin: React.FC = () => {
   } = useForm()
   const navigate = useNavigate()
   const onSubmit = (data: any) => {
-    console.log(data)
-    console.log('auth user', authUser)
     try {
       axios
         .post('http://localhost:5000/api/users/login', data)
@@ -35,7 +33,6 @@ const AuthLogin: React.FC = () => {
           navigate('/home')
         })
         .catch((err) => {
-          // console.log(err)
           setErrorMessage(err.message)
           setErrorState(true)
         })

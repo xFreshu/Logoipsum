@@ -2,15 +2,13 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 export const UserContext = React.createContext({
-  authUser: { login: '', password: '' },
-  setAuthUser: data => {},
+  authUser: { login: '', password: '', email: '', id: '', image: '', questions: [] },
+  setAuthUser: (data) => {},
 })
 
 const UserProvider = ({ children }) => {
   const [authUser, setAuthUser] = useState({})
-  return (
-    <UserContext.Provider value={{ authUser, setAuthUser }}>{children}</UserContext.Provider>
-  )
+  return <UserContext.Provider value={{ authUser, setAuthUser }}>{children}</UserContext.Provider>
 }
 
 UserProvider.propTypes = {

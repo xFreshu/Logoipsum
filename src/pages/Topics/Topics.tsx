@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { AppCard } from '../Home/Home.styles'
+import { AppCard } from '../../components/atoms/Card/AppCard/AppCard.styles'
 import { useParams } from 'react-router-dom'
 import AppTemplate from '../../components/template/AppTemplate/AppTemplate'
-import { Header, BackToTopics } from './Topics.styles'
+import { BackToTopics } from './Topics.styles'
 import axios from 'axios'
 import Question from '../../components/molecules/Question/Question'
+import Header from '../../components/atoms/Header/Header'
 
 // /topicId/:id
 const Topics = () => {
@@ -29,7 +30,9 @@ const Topics = () => {
     <>
       <AppTemplate>
         <AppCard>
-          <Header>{`${getTopic.name}, liczba pytań ${getQuestions.length}` || 'Loading'}</Header>
+          <Header
+            headerName={`${getTopic.name}, liczba pytań ${getQuestions.length}` || 'Loading'}
+          />
           <BackToTopics to='/home'>Cofnij</BackToTopics>
           <>
             {getQuestions.map(({ name, body, id, creator, answers, upvotes, downvotes }) => (

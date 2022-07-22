@@ -1,16 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
 import AppTemplate from '../../components/template/AppTemplate/AppTemplate'
-import { AppCard, WelcomeSection } from './Home.styles'
+import { WelcomeSection } from './Home.styles'
 import CategoriesContainer from '../../components/organisms/CategoriesContainer/CategoriesContainer'
 import { UserContext } from '../../context/UserProvider'
 import axios from 'axios'
+import { AppCard } from '../../components/atoms/Card/AppCard/AppCard.styles'
 
 const Home = () => {
   const [getTopics, setTopics] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const { authUser } = useContext(UserContext)
-
   useEffect(() => {
     try {
       axios
