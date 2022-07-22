@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
+  padding: 20px;
   div {
     display: flex;
     flex-direction: column;
@@ -47,7 +48,44 @@ export const StyledLabel = styled.label`
   margin-top: 4rem;
 `
 
+export const StyledTextarea = styled.textarea`
+  background-color: transparent;
+  border: solid 2px ${({ theme }) => theme.secondary};
+  height: 100px;
+  resize: none;
+  font-size: 2rem;
+  outline: none;
+  border-radius: 10px;
+  padding: 0 5px;
+  transition: 0.3s;
+  font-weight: 700;
+  color: ${({ theme }) => theme.secondary};
+  transition-timing-function: cubic-bezier(0.17, 0.67, 0.88, 0.61);
+  :focus {
+    background-color: ${({ theme }) => theme.secondary};
+    color: ${({ theme }) => theme.primary};
+  }
+`
+
 export const StyledInput = styled.input`
+  background-color: transparent;
+  border: solid 2px ${({ theme }) => theme.secondary};
+  height: 5rem;
+  font-size: 2rem;
+  outline: none;
+  border-radius: 10px;
+  padding: 0 5px;
+  transition: 0.3s;
+  font-weight: 700;
+  color: ${({ theme }) => theme.secondary};
+  transition-timing-function: cubic-bezier(0.17, 0.67, 0.88, 0.61);
+  :focus {
+    background-color: ${({ theme }) => theme.secondary};
+    color: ${({ theme }) => theme.primary};
+  }
+`
+
+export const StyledSelect = styled.select`
   background-color: transparent;
   border: solid 2px ${({ theme }) => theme.secondary};
   height: 5rem;
@@ -80,6 +118,7 @@ export const StyledButtonAuth = styled.button`
   justify-content: center;
   align-items: center;
   text-decoration: none;
+  margin: 2rem auto;
   :hover {
     background-color: ${({ theme }) => theme.primary};
     color: ${({ theme }) => theme.secondary};
