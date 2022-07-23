@@ -4,10 +4,11 @@ import { HeaderStyled } from './Header.styles'
 
 type HeaderProps = {
   headerName: string | number
+  whiteHeader?: boolean
 }
 
-const Header = ({ headerName }: HeaderProps) => {
-  return <HeaderStyled>{headerName}</HeaderStyled>
+const Header = ({ headerName, whiteHeader }: HeaderProps) => {
+  return <HeaderStyled whiteHeader={whiteHeader}>{headerName}</HeaderStyled>
 }
 
 export default Header

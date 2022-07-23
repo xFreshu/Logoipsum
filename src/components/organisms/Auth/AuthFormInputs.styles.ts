@@ -11,12 +11,12 @@ export const StyledForm = styled.form`
     position: relative;
     span {
       font-size: 1.3rem;
-      margin: 20px 0;
+      margin: 30px 0;
       font-weight: 700;
       background-color: ${({ theme }) => theme.primary};
       :before {
         position: absolute;
-        top: calc(50% + 1.5rem);
+        top: calc(50% + .5rem);
         left: -20px;
         transform: translateY(-50%);
         content: '';
@@ -28,7 +28,7 @@ export const StyledForm = styled.form`
       }
       :after {
         position: absolute;
-        top: calc(50% + 1.5rem);
+        top: calc(50% + .5rem);
         right: -20px;
         transform: translateY(-50%);
         content: '';

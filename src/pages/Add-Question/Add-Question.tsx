@@ -13,6 +13,7 @@ import {
 import Header from '../../components/atoms/Header/Header'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
+import ErrorMessage from '../../components/atoms/ErrorMessage/ErrorMessage'
 
 const AddQuestion = () => {
   const { authUser } = useContext(UserContext)
@@ -22,6 +23,7 @@ const AddQuestion = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm()
 
@@ -45,6 +47,7 @@ const AddQuestion = () => {
       })
       .then((r) => r)
       .catch((e) => e)
+    reset()
     console.log(data)
   }
 
@@ -59,9 +62,11 @@ const AddQuestion = () => {
         <Header headerName={'Dodaj pytanie'} />
         <StyledForm onSubmit={handleSubmit(onSubmit)}>
           <StyledLabel>Tytuł</StyledLabel>
-          <StyledInput {...register('name')} />
+          <StyledInput {...register('name', { required: true })} />
+          {errors.name && <ErrorMessage errorMsg='Te pole jest wymagane' />}
           <StyledLabel>Treść</StyledLabel>
-          <StyledTextarea {...register('body')} />
+          <StyledTextarea {...register('body', { required: true })} />
+          {errors.body && <ErrorMessage errorMsg='Te pole jest wymagane' />}
           <StyledLabel>Temat</StyledLabel>
           <StyledSelect {...register('topic', { required: true })}>
             <option value='' />
@@ -73,7 +78,7 @@ const AddQuestion = () => {
               )
             })}
           </StyledSelect>
-          {errors.exampleRequired && <span>This field is required</span>}
+          {errors.topic && <ErrorMessage errorMsg='Te pole jest wymagane' />}
           <StyledButtonAuth style={{ margin: '2rem auto' }}>Dodaj</StyledButtonAuth>
         </StyledForm>
       </AppCard>

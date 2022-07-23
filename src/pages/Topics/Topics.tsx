@@ -32,6 +32,7 @@ const Topics = () => {
         <AppCard>
           <Header
             headerName={`${getTopic.name}, liczba pytań ${getQuestions.length}` || 'Loading'}
+            whiteHeader={true}
           />
           <BackToTopics to='/home'>Cofnij</BackToTopics>
           <>

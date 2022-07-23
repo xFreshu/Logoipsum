@@ -59,7 +59,7 @@ const AuthLogin: React.FC = () => {
           <div>
             <StyledButtonAuth type='submit'>Zaloguj</StyledButtonAuth>
             <span>Jeśli nie masz konta to...</span>
-            <StyledButtonAuth to='/register' as={Link}>
+            <StyledButtonAuth to='/register' as={Link} style={{ marginBottom: '2rem' }}>
               Rejestracja
             </StyledButtonAuth>
           </div>
