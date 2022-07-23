@@ -17,12 +17,17 @@ export const StyledQuestion = styled.div`
 export const QuestionInformation = styled.div`
   h2 {
     font-size: 1.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
   h3 {
     font-size: 1.2rem;
     margin-bottom: 1rem;
     font-weight: 400;
+    width: 400px;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
   }
   div {
     display: flex;

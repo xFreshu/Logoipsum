@@ -74,7 +74,7 @@ const AddQuestion = () => {
             })}
           </StyledSelect>
           {errors.exampleRequired && <span>This field is required</span>}
-          <StyledButtonAuth>Dodaj</StyledButtonAuth>
+          <StyledButtonAuth style={{ margin: '2rem auto' }}>Dodaj</StyledButtonAuth>
         </StyledForm>
       </AppCard>
     </AppTemplate>

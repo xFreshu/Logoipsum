@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 0 20px;
   div {
     display: flex;
     flex-direction: column;
@@ -118,7 +118,6 @@ export const StyledButtonAuth = styled.button`
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  margin: 2rem auto;
   :hover {
     background-color: ${({ theme }) => theme.primary};
     color: ${({ theme }) => theme.secondary};
