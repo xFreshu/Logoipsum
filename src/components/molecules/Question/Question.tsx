@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { StyledQuestion, QuestionInformation, Votes } from './Question.styles'
 import axios from 'axios'
-import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 // type QuestionProps = {
 //   title: string
@@ -23,30 +23,41 @@ import PropTypes from 'prop-types'
 // }>
 // }
 
-const Question = ({ title, description, upvote, downvote, answers, creator }: any) => {
+const Question = ({
+  title,
+  description,
+  upvote,
+  downvote,
+  answers,
+  creator,
+  id,
+  refreshKey,
+}: any) => {
   const [getUser, setUser] = useState({ login: '', image: '' })
   useEffect(() => {
     axios.get(`http://localhost:5000/api/users/${creator}`).then((res) => {
       setUser(res.data.user)
     })
-  }, [])
+  }, [refreshKey])
 
   return (
-    <StyledQuestion>
-      <QuestionInformation>
-        <h2>{title}</h2>
-        <h3>{description}</h3>
-        <div>
-          <img src={getUser.image} alt={getUser.login} />
-          <span>{getUser.login}</span>
-        </div>
-      </QuestionInformation>
-      <Votes>
-        <span>👍 {upvote || 0}</span>
-        <span>👎 {downvote || 0}</span>
-        <span>Odpowiedzi: {answers.length}</span>
-      </Votes>
-    </StyledQuestion>
+    <Link to={`/questions/${id}`} style={{ textDecoration: 'none', color: '#243A5A' }}>
+      <StyledQuestion>
+        <QuestionInformation>
+          <h2>{title}</h2>
+          <h3>{description}</h3>
+          <div>
+            <img src={getUser.image} alt={getUser.login} />
+            <span>{getUser.login}</span>
+          </div>
+        </QuestionInformation>
+        <Votes>
+          <span>👍 {upvote || 0}</span>
+          <span>👎 {downvote || 0}</span>
+          <span>Odpowiedzi: {answers.length}</span>
+        </Votes>
+      </StyledQuestion>
+    </Link>
   )
 }
 

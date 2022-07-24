@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { theme } from '../../assets/theme'
 import { Route } from 'react-router-dom'
@@ -11,8 +11,11 @@ import AddQuestion from '../Add-Question/Add-Question'
 import Settings from '../Settings/Settings'
 import UserProvider from '../../context/UserProvider'
 import Topics from '../Topics/Topics'
+import QuestionPage from '../QuestionPage/QuestionPage'
 
 const App = () => {
+  const [refreshKey, setRefreshKey] = useState(0)
+
   return (
     <UserProvider>
       <ThemeProvider theme={theme}>
@@ -23,8 +26,15 @@ const App = () => {
             <Route path='/profile' element={<Profile />} />
             <Route path='/add' element={<AddQuestion />} />
             <Route path='/settings' element={<Settings />} />
-            <Route path='/home' element={<Home />} />
-            <Route path='/topics/:id' element={<Topics />} />
+            <Route
+              path='/home'
+              element={<Home refreshKey={refreshKey} setRefreshKey={setRefreshKey} />}
+            />
+            <Route path='/topics/:id' element={<Topics refreshKey={refreshKey} />} />
+            <Route
+              path='/questions/:id'
+              element={<QuestionPage setRefreshKey={setRefreshKey} refreshKey={refreshKey} />}
+            />
           </>
         </AppWrapper>
       </ThemeProvider>

@@ -6,7 +6,12 @@ import { UserContext } from '../../context/UserProvider'
 import axios from 'axios'
 import { AppCard } from '../../components/atoms/Card/AppCard/AppCard.styles'
 
-const Home = () => {
+type HomeProps = {
+  setRefreshKey: any
+  refreshKey: number
+}
+
+const Home = ({ refreshKey, setRefreshKey }: HomeProps) => {
   const [getTopics, setTopics] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const { authUser } = useContext(UserContext)
@@ -16,6 +21,7 @@ const Home = () => {
         .get('http://localhost:5000/api/topics')
         .then((res) => {
           setTopics(res.data.topics)
+          setRefreshKey((refreshKey = refreshKey + 1))
           setIsLoading(true)
           console.log(res.data.topics)
         })
@@ -25,7 +31,7 @@ const Home = () => {
     } catch (err) {
       console.log(err)
     }
-  }, [])
+  }, [refreshKey])
 
   return (
     <AppTemplate>
