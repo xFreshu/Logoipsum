@@ -50,7 +50,7 @@ const AuthRegister = () => {
           <div>
             <StyledButtonAuth>Zarejestruj</StyledButtonAuth>
             <span>Jeśli masz konto to...</span>
-            <StyledButtonAuth to='/' as={Link}>
+            <StyledButtonAuth to='/' as={Link} style={{ marginBottom: '20px' }}>
               Zaloguj
             </StyledButtonAuth>
           </div>
