@@ -21,7 +21,6 @@ const Home = ({ refreshKey, setRefreshKey }: HomeProps) => {
         .get('http://localhost:5000/api/topics')
         .then((res) => {
           setTopics(res.data.topics)
-          setRefreshKey((refreshKey = refreshKey + 1))
           setIsLoading(true)
           console.log(res.data.topics)
         })

@@ -16,7 +16,7 @@ export const StyledForm = styled.form`
       background-color: ${({ theme }) => theme.primary};
       :before {
         position: absolute;
-        top: calc(50% + .5rem);
+        top: calc(50% + 0.5rem);
         left: -20px;
         transform: translateY(-50%);
         content: '';
@@ -28,7 +28,7 @@ export const StyledForm = styled.form`
       }
       :after {
         position: absolute;
-        top: calc(50% + .5rem);
+        top: calc(50% + 0.5rem);
         right: -20px;
         transform: translateY(-50%);
         content: '';
