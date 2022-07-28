@@ -10,7 +10,6 @@ import {
   StyledForm,
   StyledInput,
   StyledLabel,
-  StyledSelect,
   StyledTextarea,
 } from '../../components/organisms/Auth/AuthFormInputs.styles'
 import ErrorMessage from '../../components/atoms/ErrorMessage/ErrorMessage'
@@ -22,10 +21,19 @@ type QuestionPageProps = {
 }
 
 const QuestionPage = ({ setRefreshKey, refreshKey }: QuestionPageProps) => {
-  const [getQuestion, setQuestion] = useState({ name: '', body: '' })
+  const [getQuestion, setQuestion] = useState({
+    name: '',
+    body: '',
+    id: '',
+    downvotes: 0,
+    upvotes: 0,
+  })
   const [isEdit, setIsEdit] = useState(true)
+
   const { id } = useParams()
   const navigate = useNavigate()
+
+  //Get specific question by ID
   useEffect(() => {
     axios.get(`http://localhost:5000/api/questions/${id}`).then((res) => {
       setQuestion(res.data)
@@ -35,6 +43,8 @@ const QuestionPage = ({ setRefreshKey, refreshKey }: QuestionPageProps) => {
     setIsEdit(!isEdit)
     console.log(isEdit)
   }
+
+  //Delete question and back to the topics
   const handleDelete = () => {
     console.log(id)
     axios
@@ -43,12 +53,12 @@ const QuestionPage = ({ setRefreshKey, refreshKey }: QuestionPageProps) => {
       .catch((err) => console.log(err))
     setRefreshKey((refreshKey = refreshKey + 1))
     console.log(refreshKey)
-    navigate(-2)
+    navigate(-1)
   }
+
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm()
 
@@ -58,15 +68,43 @@ const QuestionPage = ({ setRefreshKey, refreshKey }: QuestionPageProps) => {
       .patch(`http://localhost:5000/api/questions/${id}`, data)
       .then((r) => console.log(r))
       .catch((err) => console.log(err))
-    navigate(-2)
+    setIsEdit(true)
   }
+
+  const handleUpvote = () => {
+    axios
+      .patch(`http://localhost:5000/api/questions/${id}/contented`, {
+        upvote: getQuestion.upvotes + 1,
+        downvote: getQuestion.downvotes,
+      })
+      .then((r) => console.log(r))
+      .catch((err) => console.log(err))
+    setQuestion({ ...getQuestion, upvotes: getQuestion.downvotes + 1 })
+  }
+
+  const handleDownvote = () => {
+    axios
+      .patch(`http://localhost:5000/api/questions/${id}/contented`, {
+        upvote: getQuestion.upvotes,
+        downvote: getQuestion.downvotes + 1,
+      })
+      .then((r) => console.log(r))
+      .catch((err) => console.log(err))
+    setQuestion({ ...getQuestion, downvotes: getQuestion.downvotes + 1 })
+  }
+
   return (
     <AppTemplate>
       <AppCard>
-        <Header headerName={isEdit ? `${getQuestion.name}` : 'Edycja'} whiteHeader />
+        <Header
+          headerName={isEdit ? `Pytanie o identyfiaktorze: ${getQuestion.id}` : 'Edycja'}
+          whiteHeader
+        />
         <BackButton onClick={() => navigate(-1)}>Cofnij</BackButton>
         <BackButton onClick={handleDelete}>Delete</BackButton>
         <BackButton onClick={handleEdit}>Edytuj</BackButton>
+        <BackButton onClick={handleUpvote}>👍 {getQuestion.upvotes}</BackButton>
+        <BackButton onClick={handleDownvote}>👎 {getQuestion.downvotes}</BackButton>
         <StyledForm onSubmit={handleSubmit(onSubmit)}>
           <StyledLabel>Tytuł</StyledLabel>
           <StyledInput
