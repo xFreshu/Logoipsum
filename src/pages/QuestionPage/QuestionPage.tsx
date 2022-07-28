@@ -29,7 +29,7 @@ const QuestionPage = ({ setRefreshKey, refreshKey }: QuestionPageProps) => {
     upvotes: 0,
   })
   const [isEdit, setIsEdit] = useState(true)
-
+  const [isVoted, setIsVoted] = useState(false)
   const { id } = useParams()
   const navigate = useNavigate()
 
@@ -79,7 +79,8 @@ const QuestionPage = ({ setRefreshKey, refreshKey }: QuestionPageProps) => {
       })
       .then((r) => console.log(r))
       .catch((err) => console.log(err))
-    setQuestion({ ...getQuestion, upvotes: getQuestion.downvotes + 1 })
+    setQuestion({ ...getQuestion, upvotes: getQuestion.upvotes + 1 })
+    setIsVoted(true)
   }
 
   const handleDownvote = () => {
@@ -91,6 +92,7 @@ const QuestionPage = ({ setRefreshKey, refreshKey }: QuestionPageProps) => {
       .then((r) => console.log(r))
       .catch((err) => console.log(err))
     setQuestion({ ...getQuestion, downvotes: getQuestion.downvotes + 1 })
+    setIsVoted(true)
   }
 
   return (
@@ -103,8 +105,8 @@ const QuestionPage = ({ setRefreshKey, refreshKey }: QuestionPageProps) => {
         <BackButton onClick={() => navigate(-1)}>Cofnij</BackButton>
         <BackButton onClick={handleDelete}>Delete</BackButton>
         <BackButton onClick={handleEdit}>Edytuj</BackButton>
-        <BackButton onClick={handleUpvote}>👍 {getQuestion.upvotes}</BackButton>
-        <BackButton onClick={handleDownvote}>👎 {getQuestion.downvotes}</BackButton>
+        {!isVoted && <BackButton onClick={handleUpvote}>👍 {getQuestion.upvotes}</BackButton>}
+        {!isVoted && <BackButton onClick={handleDownvote}>👎 {getQuestion.downvotes}</BackButton>}
         <StyledForm onSubmit={handleSubmit(onSubmit)}>
           <StyledLabel>Tytuł</StyledLabel>
           <StyledInput
